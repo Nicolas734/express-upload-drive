@@ -3,12 +3,25 @@ import multer from "multer";
 import cors from "cors";
 import fs from "fs";
 import * as dotenv from "dotenv";
+import googleapis from "googleapis";
+import { createClient, createFolder } from "./drive";
 
 
 
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000
+const GOOGLE_DRIVE_CLIENT_ID = process.env.GOOGLE_DRIVE_CLIENT_ID
+const GOOGLE_DRIVE_CLIENT_SECRET = process.env.GOOGLE_DRIVE_CLIENT_SECRET
+const GOOGLE_DRIVE_REDIRECT_URI = process.env.GOOGLE_DRIVE_REDIRECT_URI
+const GOOGLE_DRIVE_REFRESH_TOKEN = process.env.GOOGLE_DRIVE_REFRESH_TOKEN
 
+
+const client = createClient(GOOGLE_DRIVE_CLIENT_ID, GOOGLE_DRIVE_CLIENT_SECRET, GOOGLE_DRIVE_REDIRECT_URI, GOOGLE_DRIVE_REFRESH_TOKEN)
+const folder = async () => {const teste = await createFolder('teste-upload', client); console.log(teste)}
+
+folder()
 
 const diretorio = 'uploads/';
 
