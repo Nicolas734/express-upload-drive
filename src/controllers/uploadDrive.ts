@@ -20,8 +20,8 @@ const uplaodFileFromDrive = async (req, res) => {
         const fileName = Date.now() + '.' + ext;
         const mimeType = file.mimetype;
         const fileContent = file.buffer;
-        const data = await sendFileFromDrive(client, fileName, mimeType, fileContent, folderId)
-        res.json("id do arquivo inserido no drive: " + data.data.id)
+        const response = await sendFileFromDrive(client, fileName, mimeType, fileContent, folderId)
+        res.json({id:"id do arquivo inserido no drive: " + response.data.id, name:response.data.name})
     }catch(error){
         console.log(error)
         res.json(error)

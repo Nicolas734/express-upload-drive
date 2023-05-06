@@ -38,7 +38,6 @@ export const searchFolder = async (folderName, client) => {
 };
 
 
-// fodlerid = 1tNMkdmH2BbMsCORtwuOO_BsugeosG1s8
 
 export const sendFileFromDrive = async (client, filename, mimetype, fileContent, folderId) => {
     const fileMetadata = {
@@ -53,7 +52,7 @@ export const sendFileFromDrive = async (client, filename, mimetype, fileContent,
         const response = await client.files.create({
             resource: fileMetadata,
             media: media,
-            fields: 'id'
+            fields: 'id, name'
         });
         return response
     }catch(error){
